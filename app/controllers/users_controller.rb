@@ -3,11 +3,12 @@ class UsersController < ApplicationController
     flash[:error] = "User not found"
     redirect_to user_index_url
   end
+  
   def index
     @users = User.all
     # Menambahkan logika untuk mengambil flash messages jika ada
     flash_message = handle_flash
-    props = flash_message.empty? ? { users: @users,csrfToken: form_authenticity_token } : { users: @users, flash: flash_message, csrfToken: form_authenticity_token }
+    props = flash_message.empty? ? { users: @users, csrfToken: form_authenticity_token } : { users: @users, flash: flash_message, csrfToken: form_authenticity_token }
     render inertia: "Users/Index", props: props
   end
 
